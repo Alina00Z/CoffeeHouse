@@ -1,7 +1,5 @@
 <template>
 <div>
-
-  
   <!-- hero -->
   <div class="container">
     <div class="hero">
@@ -21,7 +19,7 @@
     <!-- favorite_coffee -->
   <div class="container">
     <div class="favorite_coffee">
-      <h1 class="heading-1 color-dark">Choose your <span class="accent color-accent">favorite</span> coffee</h1>
+      <h1 class="heading-2 color-dark">Choose your <span class="accent color-accent">favorite</span> coffee</h1>
       <div class="slider">
 
         <div class="slider-main">
@@ -84,12 +82,12 @@
 
       <p class="heading-2 color-dark">Resource is <span class="accent color-accent">the perfect and cozy place</span> where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</p>
       <div class="gallery">
-        <div class="column">
+        <div class="column column-1">
           <box-image :pathImage="require('~/assets/about-1.jpg')" style="height: 590px;"></box-image>
-          <box-image :pathImage="require('~/assets/about-2.jpg')" style="height: 430px;"></box-image>
+          <box-image :pathImage="require('~/assets/about-2.jpg')" style="height: 430px; margin-bottom: 40px;"></box-image>
         </div>
-        <div class="column">
-          <box-image :pathImage="require('~/assets/about-3.jpg')" style="height: 430px;"></box-image>
+        <div class="column column-2">
+          <box-image :pathImage="require('~/assets/about-3.jpg')" style="height: 430px; margin-bottom: 40px;"></box-image>
           <box-image :pathImage="require('~/assets/about-4.jpg')" style="height: 590px;"></box-image>
         </div>
       </div>
@@ -128,7 +126,10 @@
             </a>
           </div>
         </div>
-        <img src="~/assets/mobile-screens.png">
+        <div class="mobile-app-image">
+          <img src="~/assets/mobile-screens.png">
+        </div>
+        
 
       </div>
     </div>

@@ -8,7 +8,7 @@
 
 <style>
 .box_image {
-  width: 660px;
+  width: 100%;
   height: 660px;
   overflow: hidden;
 
@@ -22,6 +22,7 @@
 }
 .box_image > img {
   transition: transform 0.3s ease;
+  object-fit: cover;
 }
 .box_image:hover .image {
   transform: scale(0.91);

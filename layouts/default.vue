@@ -1,15 +1,56 @@
 <template>
   <div style="position: relative; height: 100vh; width: 100vw;">
+
+    
+
     <div ref="backdrop" class="backdrop bg-backdrop"></div>
     <modal-card @close-modal="closeModal() " v-if="card_selected !== null" :card=card_selected></modal-card>
-    <header-component @click-coffee-menu="isMenuActive = $event"/>
+    <header-component @click-burger="clickBurger" @click-coffee-menu="isMenuActive = $event"/>
+    <!-- burger -->
+    <div v-if="isBurgerActive" class="container">
+      <div class="burger_menu color-dark burger-link">
+        <ul class="burger_menu-navbar">
+          <li class="btn menu_item">
+            <div class="menu_item-main">
+              <div class="menu_item-main-word">Favorite coffee</div>
+            </div>  
+            <div class="line_down-hover"></div>
+          </li>
+          <li class="btn menu_item">
+            <div class="menu_item-main">
+              <div class="menu_item-main-word">About</div>
+            </div>  
+            <div class="line_down-hover"></div>
+          </li>
+          <li class="btn menu_item">
+            <div class="menu_item-main">
+              <div class="menu_item-main-word">Mobile app</div>
+            </div>  
+            <div class="line_down-hover"></div>
+          </li>
+          <li class="btn menu_item">
+            <div class="menu_item-main">
+              <div class="menu_item-main-word">Contact us</div>
+            </div>  
+            <div class="line_down-hover"></div>
+          </li>
+        </ul>
+        <li class="btn menu_item" @click="clickCoffeeMenu()">
+            <div class="menu_item-main">
+              <div class="menu_item-main-word">Menu</div>
+              <div class="menu_item-main-icon"></div>
+            </div>  
+            <div class="line_down-hover"></div>
+          </li>
+      </div>
+    </div>
     <Nuxt v-if="!isMenuActive"/>
     <!-- :class="{
       'not-active' : isMenuActive
     }"
     -->
     <coffee-menu @click-card="clickCard" v-if="isMenuActive"/>
-    <footer-component />
+    <footer-component />  
 
   </div>
   
@@ -46,7 +87,8 @@ export default {
   data() {
     return {
       isMenuActive: false,
-      card_selected: null
+      card_selected: null,
+      isBurgerActive: false
     }
   },
   methods: {
@@ -62,6 +104,24 @@ export default {
       const body = document.querySelector('body');
       body.style.overflow = 'visible';
       this.$refs.backdrop.classList.remove('active');
+    },
+    clickBurger() {
+      this.isBurgerActive = !this.isBurgerActive;
+      const body = document.querySelector('body');
+      if (this.isBurgerActive) {
+        body.style.overflow = 'hidden';
+      }
+      else {
+        body.style.overflow = 'visible';
+      }
+      
+    },
+    clickCoffeeMenu() {
+      this.isBurgerActive = !this.isBurgerActive;
+      const body = document.querySelector('body');
+      body.style.overflow = 'visible';
+      this.isMenuActive = true;
+      this.$emit('close-burger');
     }
   }
 }
