@@ -20,57 +20,7 @@
   <div class="container">
     <div class="favorite_coffee">
       <h1 class="heading-2 color-dark">Choose your <span class="accent color-accent">favorite</span> coffee</h1>
-      <div class="slider">
-
-        <div class="slider-main">
-          <button class="btn btn-icon-dark left" @click="sliderPrevious()">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#665F55"/>
-            <path d="M36.5 30H24M24 30L30 24M24 30L30 36" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-
-          <div class="slider-window">
-
-            <div class="slider-conveyer item-1">
-              <div class="slider-item slider-1">
-                <img src="~/assets/coffee-slider-1.png" class="coffee" width="480px" height="480px">
-                <h3 class="coffee-name color-dark heading-3">S’mores Frappuccino</h3>
-                <p class="coffee-par color-dark font-medium">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
-                <p class="coffee-price heading-3 color-dark">$5.50</p>
-              </div>
-              <div class="slider-item slider-2">
-                <img src="~/assets/coffee-slider-2.png" class="coffee" width="480px" height="480px">
-                <h3 class="coffee-name color-dark heading-3">S’mores Frappuccino</h3>
-                <p class="coffee-par color-dark font-medium">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
-                <p class="coffee-price heading-3 color-dark">$5.50</p>
-              </div>
-              <div class="slider-item slider-3">
-                <img src="~/assets/coffee-slider-3.png" class="coffee" width="480px" height="480px">
-                <h3 class="coffee-name color-dark heading-3">S’mores Frappuccino</h3>
-                <p class="coffee-par color-dark font-medium">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
-                <p class="coffee-price heading-3 color-dark">$5.50</p>
-              </div>
-            </div>
-
-          </div>
-
-          <button class="btn btn-icon-dark right" @click="sliderNext()">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0.5" y="0.5" width="59" height="59" rx="29.5" stroke="#665F55"/>
-            <path d="M36.5 30H24M24 30L30 24M24 30L30 36" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-
-        <div class="slider-controls">
-          <button class="btn slider-control active"></button>
-          <button class="btn slider-control"></button>
-          <button class="btn slider-control"></button>
-        </div>
-
-      </div>
+      <slider></slider>
     </div>
   </div>
     <!-- favorite_coffee -->
@@ -141,46 +91,73 @@
 
 <script>
 import BoxImage from '/components/BoxImage.vue'
+import Slider from '/components/Slider.vue'
 export default {
   name: 'IndexPage',
   layout: 'default',
   components: {
     BoxImage,
+    Slider,
   },
-
   data() {
     return {
       index_favorite_coffee: 0,
     }
   },
   methods: {
-    sliderNext() {
+    favoriteCoffeeShow() {
       const conveyer = document.querySelector('.slider-conveyer');
       const controls = document.querySelectorAll('.slider-control');
-      if (this.index_favorite_coffee == 2) {
-        conveyer.classList.remove('item-2');
-        conveyer.classList.remove('item-3');
+      conveyer.classList.remove('item-1');
+      conveyer.classList.remove('item-2');
+      conveyer.classList.remove('item-3');
+      controls[0].classList.remove('active');
+      controls[1].classList.remove('active');
+      controls[2].classList.remove('active');
+      if (this.index_favorite_coffee >= 0) {
+        this.index_favorite_coffee = this.index_favorite_coffee % 3;
       }
-      controls[this.index_favorite_coffee].classList.remove('active');
-      this.index_favorite_coffee = (this.index_favorite_coffee + 1) % 3;
+      else {
+        this.index_favorite_coffee = 3 -(-this.index_favorite_coffee % 3);
+      }
       conveyer.classList.add(`item-${this.index_favorite_coffee+1}`);
       controls[this.index_favorite_coffee].classList.add('active');
     },
-    sliderPrevious() {
-      const conveyer = document.querySelector('.slider-conveyer');
-      const controls = document.querySelectorAll('.slider-control');
-      controls[this.index_favorite_coffee].classList.remove('active');
-      this.index_favorite_coffee--;
-      if (this.index_favorite_coffee < 0) {
-        this.index_favorite_coffee = 2;
-        conveyer.classList.add('item-3');
-      }
-      controls[this.index_favorite_coffee].classList.add('active');
-      conveyer.classList.remove(`item-${this.index_favorite_coffee+1+1}`);
-      if (!conveyer.classList.contains(`item-${this.index_favorite_coffee+1}`)) {
-        conveyer.classList.add(`item-${this.index_favorite_coffee+1}`);
-      }
+    sliderNext() {
+      this.index_favorite_coffee++;
+      this.favoriteCoffeeShow();
+    //   const conveyer = document.querySelector('.slider-conveyer');
+    //   const controls = document.querySelectorAll('.slider-control');
+    //   if (this.index_favorite_coffee == 2) {
+    //     conveyer.classList.remove('item-2');
+    //     conveyer.classList.remove('item-3');
+    //   }
+    //   controls[this.index_favorite_coffee].classList.remove('active');
+    //   this.index_favorite_coffee = (this.index_favorite_coffee + 1) % 3;
+    //   conveyer.classList.add(`item-${this.index_favorite_coffee+1}`);
+    //   controls[this.index_favorite_coffee].classList.add('active');
     },
+    sliderPrevious() {
+      this.index_favorite_coffee--;
+      this.favoriteCoffeeShow();
+    //   const conveyer = document.querySelector('.slider-conveyer');
+    //   const controls = document.querySelectorAll('.slider-control');
+    //   controls[this.index_favorite_coffee].classList.remove('active');
+    //   this.index_favorite_coffee--;
+    //   if (this.index_favorite_coffee < 0) {
+    //     this.index_favorite_coffee = 2;
+    //     conveyer.classList.add('item-3');
+    //   }
+    //   controls[this.index_favorite_coffee].classList.add('active');
+    //   conveyer.classList.remove(`item-${this.index_favorite_coffee+1+1}`);
+    //   if (!conveyer.classList.contains(`item-${this.index_favorite_coffee+1}`)) {
+    //     conveyer.classList.add(`item-${this.index_favorite_coffee+1}`);
+    //   }
+    },
+    setSlider(number) {
+      this.index_favorite_coffee = number-1;
+      this.favoriteCoffeeShow();
+   }
   }
 }
 

@@ -24,14 +24,14 @@
               <div class="circle"></div>
               <div class="emoji">S</div>
             </div>
-            <div class="tab_item-word">200 ml</div>
+            <div class="tab_item-word">300 ml</div>
           </li>
           <li class="tab_item">
             <div class="tab_item-icon">
               <div class="circle"></div>
               <div class="emoji">S</div>
             </div>
-            <div class="tab_item-word">200 ml</div>
+            <div class="tab_item-word">400 ml</div>
           </li>
       </ul>
     </div>
@@ -157,6 +157,32 @@
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .modal_card {
+    width: 656px;
+    height: 594px;
+    margin-left: -328px;
+  }
+  .modal_card .tab_item:last-child {
+    margin-top: 8px;
+  }
+  .window_coffee-offer .tab_item:not(:last-child) {
+    margin-right: 8px;
+  }
+}
+@media (max-width: 380px) {
+  .modal_card {
+    width: 342px;
+    height: 626px;
+    margin-left: -171px;
+  }
+  .modal_card > img {
+    display: none;
+  }
+  .modal_card-description {
+    padding: 0px;
+  }
+}
 
 </style>
 <script>
