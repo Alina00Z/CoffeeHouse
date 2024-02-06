@@ -714,29 +714,10 @@ a {
     align-items: center;
   }
 }
-@media (max-width: 664px) {
-  /* .slider-window {
-    width: 348px;
-  }
-  .slider-item img{
-    width: 348px;
-    height: 348px;
-  }
-  .slider-conveyer.item-2 {
-    margin-left:-348px;
-  }
-  .slider-conveyer.item-3 {
-    margin-left:-696px;
-  }
-  .slider-main {
-    height: 640px;
-  } */
-}
 @media (max-width: 570px) {
   .hero .heading-1 {
     font-size: 42px;
   }
-  
 }
 @media (max-width:547px) {
   .btn-icon-dark {

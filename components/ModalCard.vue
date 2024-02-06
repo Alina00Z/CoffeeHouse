@@ -170,7 +170,7 @@
     margin-right: 8px;
   }
 }
-@media (max-width: 380px) {
+@media (max-width:670px) {
   .modal_card {
     width: 342px;
     height: 626px;
@@ -182,6 +182,9 @@
   .modal_card-description {
     padding: 0px;
   }
+}
+@media (max-width: 380px) {
+  
 }
 
 </style>
