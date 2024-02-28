@@ -1,14 +1,17 @@
 <template>
-  <div class="container">
+  <div class="container container_header bg-body">
 
     <header class="header color-dark link_button">
 
-      <Nuxt-Link to="/" class="logo"></Nuxt-Link>
+      <div class="logo" @click="openIndex()">
+        <Nuxt-Link to="/" ></Nuxt-Link>
+      </div>
+      
       <ul class="navbar">
-        <li><a href="#favorite_coffee" class="color-dark">Favorite coffee</a></li> 
-        <li><a href="#about" class="color-dark">About</a></li>
-        <li><a href="#mobile-app" class="color-dark">Mobile app</a></li>
-        <li><a href="#footer" class="color-dark">Contact us</a></li>
+        <li @click="openIndex()"><Nuxt-Link :to="{path:'/', hash:'#favorite_coffee'}" href="#favorite_coffee" class="color-dark">Favorite coffee</Nuxt-Link></li> 
+        <li @click="openIndex()"><Nuxt-Link :to="{path:'/', hash:'#about'}" href="#about" class="color-dark">About</Nuxt-Link></li>
+        <li @click="openIndex()"><Nuxt-Link :to="{path:'/', hash:'#mobile-app'}" href="#mobile-app" class="color-dark">Mobile app</Nuxt-Link></li>
+        <li @click="openIndex()"><a href="#footer" class="color-dark">Contact us</a></li>
       </ul>
       
       <div class="menu" @click="clickMenu()" >
@@ -17,17 +20,18 @@
             <div class="menu_item-main-word">Menu</div>
             <div class="menu_item-main-icon"></div>
           </div>  
-          <div class="line_down-hover" ></div>
+          <div class="line_down-hover"></div>
         </Nuxt-Link>
       </div>
 
       <!-- media 768px -->
-      <button class="btn btn_burger" :class="{'active' : isBurgerActive}" @click="$emit('click-burger'); isBurgerActive=!isBurgerActive">
+      <button @click="clickBurger()" class="btn btn_burger" :class="{'active' : this.isBurgerActive}">
         <div class="btn_burger-line line-1"></div>
         <div class="btn_burger-line line-2"></div>
       </button>
 
     </header>
+    
   </div>
 </template>
 
@@ -35,22 +39,30 @@
 export default {
   name: "HeaderComponent",
   created: function() {
-    this.$parent.$on('close-burger', this.closeBurger);
+    // this.$parent.$on('close-burger', this.closeBurger);
   },
-  
+  props: ['isBurgerActiveProp'],
   data() {
     return {
+      isBurgerActive : this.isBurgerActiveProp,
       isMenuActive: false,
-      isBurgerActive: false
     }
   },
   methods: {
     clickMenu() {
-      this.isMenuActive = !this.isMenuActive;
+      this.isMenuActive = true;
       this.$emit('click-menu', this.isMenuActive);
     },
-    closeBurger() {
+    clickBurger() {
+      this.isBurgerActive = !this.isBurgerActive;
+      this.$emit('click-burger', this.isBurgerActive);
+
+
+    },
+    openIndex() {
       this.isBurgerActive = false;
+      this.isMenuActive = false;
+      this.$emit('close-burger', this.isBurgerActive);
     }
   }
 }

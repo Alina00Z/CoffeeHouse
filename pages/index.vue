@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- hero -->
-    <div class="container"> 
+    <div class="container container_hero"> 
       <div class="hero">
         <img src="~/assets/img-hero.jpg" width="1360px" height="644px" />
         <div class="hero-info">
@@ -85,7 +85,7 @@
       </div>
         <!-- mobile-app -->
    <!-- MAIN PAGE [END]-->
-  
+      <div id="footer_for_scroll"></div>
   </div>
 </template>
 <script>
