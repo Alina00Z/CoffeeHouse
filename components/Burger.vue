@@ -1,9 +1,9 @@
 <template>
 
-<div class="burger_menu color-dark burger-link">
+<div class="color-dark burger-link">
   <ul class="burger_menu-navbar">
 
-    <li class="btn menu_item" @click="openMenu()">
+    <li class="btn menu_item" @click="openIndex()">
       <Nuxt-Link :to="{ path: '/',hash:'#favorite_coffee'}">
         <div class="menu_item-main">
           <div class="menu_item-main-word">Favorite coffee</div>
@@ -12,7 +12,7 @@
       </Nuxt-Link>
     </li>
 
-    <li class="btn menu_item" @click="openMenu()">
+    <li class="btn menu_item" @click="openIndex()">
       <Nuxt-Link :to="{ path: '/',hash:'#about'}">
         <div class="menu_item-main">
           <div class="menu_item-main-word">About</div>
@@ -21,7 +21,7 @@
       </Nuxt-Link>
     </li>
 
-    <li class="btn menu_item" @click="openMenu()">
+    <li class="btn menu_item" @click="openIndex()">
       <Nuxt-Link :to="{ path: '/',hash:'#mobile-app'}">
         <div class="menu_item-main">
           <div class="menu_item-main-word">Mobile app</div>
@@ -30,7 +30,7 @@
       </Nuxt-Link>
     </li>
 
-    <li class="btn menu_item" @click="openMenu()">
+    <li class="btn menu_item" @click="openIndex()">
       <Nuxt-Link :to="{ path: '/',hash:'#footer_for_scroll'}">
         <div class="menu_item-main">
           <div class="menu_item-main-word">Contact us</div>
@@ -56,6 +56,7 @@
 <script>
 export default {
   name: 'BurgerComponent',
+  props: ['isBurgerActiveProp'],
   data() {
     return {
     }
@@ -63,6 +64,9 @@ export default {
   methods: {
     openMenu() {
       this.$emit('open-menu');
+    },
+    openIndex() {
+      this.$emit('open-index')
     }
   }
 }

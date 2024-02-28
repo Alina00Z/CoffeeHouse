@@ -1,10 +1,11 @@
 <template>
+  <div>
   <div class="container container_header bg-body">
 
     <header class="header color-dark link_button">
 
       <div class="logo" @click="openIndex()">
-        <Nuxt-Link to="/" ></Nuxt-Link>
+        <Nuxt-Link to="/"></Nuxt-Link>
       </div>
       
       <ul class="navbar">
@@ -31,11 +32,13 @@
       </button>
 
     </header>
-    
   </div>
+  <Burger class="burger_menu" :class="{'active' : this.isBurgerActive}" :is-burger-active-prop="isBurgerActive" @open-index="openIndex()" @open-menu="openMenu()"/>
+</div>
 </template>
 
 <script>
+import Burger from '/components/Burger.vue';
 export default {
   name: "HeaderComponent",
   created: function() {
@@ -56,12 +59,15 @@ export default {
     clickBurger() {
       this.isBurgerActive = !this.isBurgerActive;
       this.$emit('click-burger', this.isBurgerActive);
-
-
     },
     openIndex() {
       this.isBurgerActive = false;
       this.isMenuActive = false;
+      this.$emit('close-burger', this.isBurgerActive);
+    },
+    openMenu() {
+      this.isBurgerActive = false;
+      this.isMenuActive = true;
       this.$emit('close-burger', this.isBurgerActive);
     }
   }

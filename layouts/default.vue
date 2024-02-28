@@ -2,11 +2,9 @@
   <div id="defaultApp" style="position: relative;">
     <div ref="backdrop" class="backdrop bg-backdrop" @click="closeModal()"></div>
 
-    <Burger @click="clickBurger" @open-menu="openMenu()" v-if="isBurgerActive"/>
-    
     <modal-card @close-modal="closeModal()" v-if="card_selected !== null" :card=card_selected></modal-card>
 
-    <header-component v-bind:is-burger-active-prop="isBurgerActive" @click-burger="clickBurger($event)" @click-menu="openMenu()" @close-burger="isBurgerActive=$event"/>
+    <header-component :is-burger-active-prop="isBurgerActive" @click-burger="clickBurger($event)" @click-menu="openMenu()" @close-burger="closeBurger()"/>
     
     <Nuxt/> 
   
@@ -37,7 +35,6 @@
 import HeaderComponent from '/components/Header.vue'
 import FooterComponent from '/components/Footer.vue'
 import ModalCard from '/components/ModalCard.vue'
-import Burger from '/components/Burger.vue'
 export default {
   components: {
     HeaderComponent,
@@ -81,13 +78,21 @@ export default {
         body.style.overflow = 'hidden';
       }
       else {
-        body.style.overflow = 'visible';
+        this.closeBurger();
       }
     },
-    openMenu() {
-      this.isBurgerActive = false;
+    closeBurger() {
       const body = document.querySelector('body');
       body.style.overflow = 'visible';
+      this.isBurgerActive = false;
+    },
+    openMenu() {
+      this.closeBurger();
+      this.isMenuActive = true;
+    },
+    openIndex() {
+      closeBurger();
+      this.isMenuActive = false;
     }
   }
 }
