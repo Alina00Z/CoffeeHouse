@@ -16,7 +16,7 @@
       </ul>
       
       <div class="menu" @click="clickMenu()" >
-        <Nuxt-Link to="/menu" class="btn menu_item coffee link_button color-dark" :class="{'active' : isMenuActive}" >
+        <Nuxt-Link to="/menu" class="btn menu_item coffee link_button color-dark" :class="{'active' : this.pathIsMenu}" >
           <div class="menu_item-main">
             <div class="menu_item-main-word">Menu</div>
             <div class="menu_item-main-icon"></div>
@@ -41,18 +41,26 @@
 import Burger from '/components/Burger.vue';
 export default {
   name: "HeaderComponent",
-  created: function() {
-    // this.$parent.$on('close-burger', this.closeBurger);
-  },
-  props: ['isBurgerActiveProp'],
+  props: ['isBurgerActiveProp', 'pathIsMenuProp'],
+  mounted() {
+      this.pathIsMenu = window.location.pathname == '/menu';
+    },
   data() {
     return {
       isBurgerActive : this.isBurgerActiveProp,
       isMenuActive: false,
+      pathIsMenu: false
     }
   },
+
+  // computed: {
+  //   pathIsMenu() {
+  //     return window.location.pathname == '/menu';
+  //   },
+  // },
   methods: {
     clickMenu() {
+      // document.location.reload();
       this.isMenuActive = true;
       this.$emit('click-menu', this.isMenuActive);
     },
@@ -63,6 +71,7 @@ export default {
     openIndex() {
       this.isBurgerActive = false;
       this.isMenuActive = false;
+      this.pathIsMenu = false;
       this.$emit('close-burger', this.isBurgerActive);
     },
     openMenu() {

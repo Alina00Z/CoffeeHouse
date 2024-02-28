@@ -4,7 +4,7 @@
 
     <modal-card @close-modal="closeModal()" v-if="card_selected !== null" :card=card_selected></modal-card>
 
-    <header-component :is-burger-active-prop="isBurgerActive" @click-burger="clickBurger($event)" @click-menu="openMenu()" @close-burger="closeBurger()"/>
+    <header-component :path-is-menu-prop="pathIsMenu" :is-burger-active-prop="isBurgerActive" @click-burger="clickBurger($event)" @click-menu="openMenu()" @close-burger="closeBurger()"/>
     
     <Nuxt/> 
   
@@ -51,7 +51,8 @@ export default {
     return {
       isMenuActive: false,
       card_selected: null,
-      isBurgerActive: false
+      isBurgerActive: false,
+      pathIsMenu: false
     }
   },
   methods: {

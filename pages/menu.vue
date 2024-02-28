@@ -56,8 +56,6 @@
     components: {
       CoffeeMenuCard,
     },
-    
-    
     data() {
       return {
         tabsState: [

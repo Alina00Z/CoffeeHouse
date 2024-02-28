@@ -635,17 +635,16 @@ a {
 
 .burger_menu-navbar {
   height: 340px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   margin-top: 60px;
   margin-bottom: 100px;
 }
 .menu_item {
   cursor: pointer;
-  width: 100%;
+  width: fit-content;
   margin-bottom: 60px;
 }
 
