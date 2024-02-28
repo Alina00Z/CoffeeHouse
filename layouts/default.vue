@@ -18,7 +18,9 @@
 <style>
   .backdrop {
     position: fixed;
-    z-index: 2;
+    top: 0px;
+    left: 0px;
+    z-index: 11;
     width: 100%;
     height: 0%;
     opacity: 0%;
@@ -58,7 +60,7 @@ export default {
   methods: {
     clickCard([type, name, info, price]) {
       const body = document.querySelector('body');
-      // body.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
       this.$refs.backdrop.classList.add('active');
 
       this.card_selected = {type: type, name: name, info: info, price: price};

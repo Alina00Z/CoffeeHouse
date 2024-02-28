@@ -101,18 +101,23 @@
 }
 .modal_card {
   position: fixed;
-  z-index: 2;
+  z-index: 20;
   width: 800px;
   height: 504px;
-
-  transform: translate(0);
-  margin-top: -252px;
+  
+  /* 1 var */
+  top: 50%; 
   left: 50%;
-  margin-left: -400px;
+  transform: translate(-50%, -50%);
+
+  /* 2 var */
+  /* margin-top: -252px;
+  left: 50%; 
+  margin-left: -400px;  */
 
   border-radius: 40px;
   opacity: 0%;
-  animation: appear_modal-opacity 0.6s ease-in-out 0.8s forwards, appear_modal-top 0.6s ease-in-out 0.8s forwards;
+  animation: appear_modal-opacity 0.6s ease-in-out 0.8s forwards;
 
   padding: 16px;
 
@@ -143,14 +148,13 @@
    opacity: 100%;
   }
 }
-@keyframes appear_modal-top {
+/* @keyframes appear_modal-top {
   0% {
-    transform: translateY(0%);
   }
   100% {
-    transform: translateY(50vh);
+    transform: translateY(100%);
   }
-}
+} */
 
 .modal_card-description-total {
   display: flex;
@@ -161,7 +165,7 @@
   .modal_card {
     width: 656px;
     height: 594px;
-    margin-left: -328px;
+    /* margin-left: -328px; */
   }
   .modal_card .tab_item:last-child {
     margin-top: 8px;
@@ -174,7 +178,7 @@
   .modal_card {
     width: 342px;
     height: 626px;
-    margin-left: -171px;
+    /* margin-left: -171px; */
   }
   .modal_card > img {
     display: none;
