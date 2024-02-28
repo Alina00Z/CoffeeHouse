@@ -1,11 +1,9 @@
 <template>
-  <div style="position: relative; height: 100vh; width: 100vw;">
+  <div id="defaultApp" style="position: relative;">
 
-    
-
-    <div ref="backdrop" class="backdrop bg-backdrop"></div>
-    <modal-card @close-modal="closeModal() " v-if="card_selected !== null" :card=card_selected></modal-card>
-    <header-component @click-burger="clickBurger" @click-coffee-menu="isMenuActive = $event"/>
+    <div ref="backdrop" class="backdrop bg-backdrop" @click="closeModal()"></div>
+    <modal-card @close-modal="closeModal()" v-if="card_selected !== null" :card=card_selected></modal-card>
+    <header-component @click-burger="clickBurger" @click-menu="isMenuActive = $event"/>
     <!-- burger -->
     <div v-if="isBurgerActive" class="container">
       <div class="burger_menu color-dark burger-link">
@@ -35,7 +33,7 @@
             <div class="line_down-hover"></div>
           </li>
         </ul>
-        <li class="btn menu_item" @click="clickCoffeeMenu()">
+        <li class="btn menu_item" @click="clickMenu()">
             <div class="menu_item-main">
               <div class="menu_item-main-word">Menu</div>
               <div class="menu_item-main-icon"></div>
@@ -44,12 +42,11 @@
           </li>
       </div>
     </div>
-    <Nuxt v-if="!isMenuActive"/>
-    <!-- :class="{
+    <Nuxt/> 
+    <!-- :class="{  v-if="!isMenuActive"
       'not-active' : isMenuActive
     }"
     -->
-    <coffee-menu @click-card="clickCard" v-if="isMenuActive"/>
     <footer-component />  
 
   </div>
@@ -75,14 +72,18 @@
 <script>
 import HeaderComponent from '/components/Header.vue'
 import FooterComponent from '/components/Footer.vue'
-import CoffeeMenu from '/components/CoffeeMenu.vue'
 import ModalCard from '/components/ModalCard.vue'
 export default {
   components: {
     HeaderComponent,
     FooterComponent,
-    CoffeeMenu,
-    ModalCard
+    ModalCard,
+},
+  created () {
+    this.$nuxt.$on('click-card', ($event) => this.clickCard($event));
+  },
+  destroyed() {
+    this.$nuxt.$off('click-card', ($event) => this.clickCard($event));
   },
   data() {
     return {
@@ -94,10 +95,12 @@ export default {
   methods: {
     clickCard([type, name, info, price]) {
       const body = document.querySelector('body');
-      body.style.overflow = 'hidden';
+      // body.style.overflow = 'hidden';
       this.$refs.backdrop.classList.add('active');
 
       this.card_selected = {type: type, name: name, info: info, price: price};
+
+      const defaultApp = document.querySelector('.defaultApp');
     },
     closeModal() {
       this.card_selected = null;
@@ -116,7 +119,7 @@ export default {
       }
       
     },
-    clickCoffeeMenu() {
+    clickMenu() {
       this.isBurgerActive = !this.isBurgerActive;
       const body = document.querySelector('body');
       body.style.overflow = 'visible';

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <footer class="footer">
+    <footer id="footer" class="footer">
 
       <div class="bg-footer bg-container"></div>
 
@@ -91,5 +91,7 @@
       </div>
 
     </footer>
+    <!-- footer_hr для нижнего отступа -->
+    <hr class="footer_hr"> 
   </div>
 </template>
