@@ -56,6 +56,6 @@ npm install
 npm run dev
 
 # сборка и запуск сервера
-$ npm run build
-$ npm run start
+npm run build
+npm run start
 ```
